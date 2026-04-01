@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 style="text-align:center;">Processing Claim...</h2>
+
+<form method="get">
+    <input type="text" name="city" placeholder="Enter City (e.g. Delhi, Mumbai)" required>
+    <button type="submit">Check Weather</button>
+</form>
+
+<div class="card">
+    <p><strong>📍 City:</strong> {{ city }}</p>
+    <p><strong>🌦 Weather:</strong> {{ weather }}</p>
+    <p><strong>🌧 Rain:</strong> {{ rain }}</p>
+
+    <p>
+
+    <strong>🚶 Movement:</strong> 
+    <span id="movement" style="font-weight:bold;"></span>
+    </p>
+    
+    <p><strong>📦 Orders:</strong> {{ orders }}</p>
+</div>
+
+<script>
+const movementEl = document.getElementById("movement");
+
+let states = ["Analyzing...", "Tracking...", "Detecting..."];
+let finalState = "{{ movement }}";
+
+let i = 0;
+
+function animateMovement() {
+    if (i < states.length) {
+        movementEl.innerText = states[i];
+        i++;
+        setTimeout(animateMovement, 700);
+    } else {
+        movementEl.innerText = finalState;
+
+        // Add color effect
+        if (finalState === "moving") {
+            movementEl.style.color = "green";
+        } else {
+            movementEl.style.color = "gray";
+        }
+    }
+}
+
+animateMovement();
+</script>
+
+<div class="result {{ status_class }}">
+    {{ result }}
+</div>
+
+<a href="/" class="btn">⬅ Back to Home</a>
+
+{% endblock %}
