@@ -1,0 +1,17 @@
+{{% extends "base.html" %}
+
+{% block content %}
+
+<h3 style="text-align:center;">Create Account</h3>
+
+<form method="POST">
+  {% csrf_token %}
+  
+  <input type="text" name="name" placeholder="Enter Name">
+  <input type="text" name="city" placeholder="Enter City">
+  <input type="number" name="income" placeholder="Daily Income">
+
+  <button type="submit">Get Started</button>
+</form>
+
+{% endblock %}

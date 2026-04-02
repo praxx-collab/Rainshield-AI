@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RainShield AI</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: #eaf4ff;
+        }
+
+        /* 📱 App Container */
+        .phone {
+            width: 360px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            animation: fadeIn 0.6s ease;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #007bff, #00c6ff);
+            color: white;
+            text-align: center;
+            padding: 18px;
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        /* Content */
+        .container {
+            padding: 20px;
+        }
+
+        /* Inputs */
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 12px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        input:focus {
+            border-color: #007bff;
+        }
+
+        /* Buttons */
+        button, .btn {
+            background: linear-gradient(135deg, #007bff, #00c6ff);
+            color: white;
+            padding: 14px;
+            border-radius: 12px;
+            border: none;
+            text-align: center;
+            display: block;
+            width: 100%;
+            margin-top: 10px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        button:hover, .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,123,255,0.3);
+        }
+
+        /* Cards */
+        .card {
+            background: #f4f8ff;
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Result */
+        .result {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .success { color: #28a745; }
+        .danger { color: #dc3545; }
+        .warning { color: #ff9800; }
+
+        /* Splash Screen */
+        #splash {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #007bff, #00c6ff);
+            color: white;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 9999;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            animation: popIn 1s ease;
+        }
+
+        #splash p {
+            opacity: 0.8;
+            margin-top: 10px;
+        }
+
+        @keyframes popIn {
+            0% {transform: scale(0.5); opacity: 0;}
+            100% {transform: scale(1); opacity: 1;}
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0; transform: translateY(10px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- Splash Screen -->
+<div id="splash">
+    <h1 class="logo">RainShield AI</h1>
+    <p>Smart Insurance for Gig Workers</p>
+</div>
+
+<!-- App -->
+<div class="phone">
+    <div class="header">RainShield AI</div>
+
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+</div>
+
+<!-- Splash Logic (only once) -->
+<script>
+    if (!localStorage.getItem("seenSplash")) {
+        const splash = document.getElementById("splash");
+        splash.style.display = "flex";
+
+        setTimeout(() => {
+            splash.style.display = "none";
+        }, 2000);
+
+        localStorage.setItem("seenSplash", "true");
+    }
+</script>
+
+</body>
+</html>
