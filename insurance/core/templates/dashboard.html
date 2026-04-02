@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Welcome {{ worker.name }}</h2>
+
+<div class="card">
+    <p><strong>City:</strong> {{ worker.city }}</p>
+    <p><strong>Daily Income:</strong> ₹{{ worker.daily_income }}</p>
+</div>
+
+<div class="card">
+    <h3>Your Weekly Premium: ₹{{ premium }}</h3>
+</div>
+
+<!-- 🔥 CLAIM BUTTONS -->
+<a href="/claim/?city={{ worker.city }}" class="btn">
+    🌍 Check Real Weather Claim
+</a>
+
+<a href="/claim/?city={{ worker.city }}&force_rain=true&move=moving&orders=3" class="btn">
+    🌧 Simulate Rain Claim (Approved)
+</a>
+
+<a href="/claim/?city={{ worker.city }}&force_rain=true&move=static&orders=0" class="btn">
+    ⚠️ Simulate Fraud Case
+</a>
+
+
+
+
+{% endblock %}
